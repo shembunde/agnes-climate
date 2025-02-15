@@ -59,3 +59,13 @@ export type TClimateCard = {
 };
 
 export type TPageProps = { page: string; active: boolean };
+
+export type TSingleContactProps = Pick<
+	TTitleIconProps,
+	'Icon' | 'className' | 'title'
+>;
+
+export type TSingleSuggestedQueryProps = {
+	desc: string;
+	img: string;
+};

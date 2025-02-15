@@ -4,6 +4,7 @@ import {
 	TFilterProps,
 	TFiltersListed,
 	TLinkProps,
+	TSingleSuggestedQueryProps,
 } from '@/types';
 
 export const HEADER_LINKS: TLinkProps[] = [
@@ -179,5 +180,89 @@ export const CLIMATE_ACTION: TClimateCard[] = [
 		description: `	As African leaders and negotiators come together at COP 29, we stand at a critical juncture. The impacts of climate change are no longer abstract, and for far too many communities, particularly women, the consequences are immediate and devastating. This is more than a technical issue; it’s a moral crisis. We cannot separate climate action from the pursuit of gender equality.`,
 		tag: 'Energy',
 		title: `Call for Gender Considerations in Climate Action: Message to African Leaders at COP 29`,
+	},
+
+	{
+		imgSrc: '/images/researchers.png',
+
+		date: new Date(),
+		description: `	As African leaders and negotiators come together at COP 29, we stand at a critical juncture. The impacts of climate change are no longer abstract, and for far too many communities, particularly women, the consequences are immediate and devastating. This is more than a technical issue; it’s a moral crisis. We cannot separate climate action from the pursuit of gender equality.`,
+		tag: 'Energy',
+		title: `Call for Gender Considerations in Climate Action: Message to African Leaders at COP 29`,
+	},
+
+	{
+		date: new Date(),
+		description: `	As African leaders and negotiators come together at COP 29, we stand at a critical juncture. The impacts of climate change are no longer abstract, and for far too many communities, particularly women, the consequences are immediate and devastating. This is more than a technical issue; it’s a moral crisis. We cannot separate climate action from the pursuit of gender equality.`,
+		tag: 'Energy',
+		title: `Call for Gender Considerations in Climate Action: Message to African Leaders at COP 29`,
+		imgSrc: '/images/foggy-bush.png',
+	},
+
+	{
+		imgSrc: '/images/farmer-lady.png',
+
+		date: new Date(),
+		description: `	As African leaders and negotiators come together at COP 29, we stand at a critical juncture. The impacts of climate change are no longer abstract, and for far too many communities, particularly women, the consequences are immediate and devastating. This is more than a technical issue; it’s a moral crisis. We cannot separate climate action from the pursuit of gender equality.`,
+		tag: 'Energy',
+		title: `Call for Gender Considerations in Climate Action: Message to African Leaders at COP 29`,
+	},
+
+	{
+		imgSrc: '/images/foggy-bush.png',
+
+		date: new Date(),
+		description: `	As African leaders and negotiators come together at COP 29, we stand at a critical juncture. The impacts of climate change are no longer abstract, and for far too many communities, particularly women, the consequences are immediate and devastating. This is more than a technical issue; it’s a moral crisis. We cannot separate climate action from the pursuit of gender equality.`,
+		tag: 'Energy',
+		title: `Call for Gender Considerations in Climate Action: Message to African Leaders at COP 29`,
+	},
+];
+
+export const FOOTER_LINKS: Required<Pick<TLinkProps, 'href' | 'title'>>[] = [
+	{
+		title: 'Home',
+		href: '/',
+	},
+
+	{
+		title: 'About us',
+		href: '/',
+	},
+
+	{
+		title: 'Careers',
+		href: '/',
+	},
+
+	{
+		title: 'Contact',
+		href: '/',
+	},
+
+	{
+		title: 'Staff mail',
+		href: '/',
+	},
+];
+
+export const SUGGESTED_QUERIES: TSingleSuggestedQueryProps[] = [
+	{
+		desc: 'Gender & climate change vulnerability in Africa',
+		img: '/images/expectant-woman.svg',
+	},
+
+	{
+		desc: 'Reflections from COP29 Global Goal',
+		img: '/images/cop29.svg',
+	},
+
+	{
+		desc: 'Agriculture Situational Analysis in Kenya',
+		img: '/images/hat-man.svg',
+	},
+
+	{
+		desc: 'Africa concerns on climate change issues',
+		img: '/images/africa.svg',
 	},
 ];

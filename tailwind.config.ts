@@ -12,7 +12,9 @@ const config: Config = {
 				'placeholder': 'var(--placeholder-text)',
 				'bodytext': 'var(--body-text)',
 				'border-color-darker': 'var(--border-color-darker)',
+				'footer-text': 'var(--footer-text-color)',
 				'border-single-pagin': 'var(--border-single-pagin)',
+				'footer-bg': 'var(--footer-bg)',
 				'dark': 'var(--dark)',
 				'agnes-blue': 'var(--agnes-blue)',
 				'card': {
@@ -55,17 +57,6 @@ const config: Config = {
 				},
 			},
 			boxShadow: {
-				'soft-multi':
-					'19px 27px 13px rgba(171, 171, 171, 0.01), ' +
-					'11px 15px 11px rgba(171, 171, 171, 0.04), ' +
-					'5px 7px 8px rgba(171, 171, 171, 0.06), ' +
-					'1px 2px 5px rgba(171, 171, 171, 0.07)',
-				'elevated':
-					'19px 27px 13px rgba(171, 171, 171, 0.01), ' +
-					'11px 15px 11px rgba(171, 171, 171, 0.04), ' +
-					'5px 7px 8px rgba(171, 171, 171, 0.06), ' +
-					'1px 2px 5px rgba(171, 171, 171, 0.07)',
-
 				'soft-depth':
 					'19px 27px 13px rgba(171, 171, 171, 0.01), ' +
 					'11px 15px 11px rgba(171, 171, 171, 0.04), ' +

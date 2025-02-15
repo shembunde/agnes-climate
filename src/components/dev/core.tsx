@@ -2,12 +2,15 @@ import {
 	ALL_FILTERS,
 	CLIMATE_ACTION,
 	FILTERS,
+	FOOTER_LINKS,
 	HEADER_LINKS,
+	SUGGESTED_QUERIES,
 } from '@/utils/constants';
 import { Link } from 'react-router-dom';
 import {
 	TBadgeFilter,
 	TChildNode,
+	TClassName,
 	TClimateCard,
 	TFilterBadge,
 	TFilterProps,
@@ -16,6 +19,8 @@ import {
 	TLinkProps,
 	TPageProps,
 	TSearchProps,
+	TSingleContactProps,
+	TSingleSuggestedQueryProps,
 	TTitle,
 	TTitleIconProps,
 } from '../../types';
@@ -26,8 +31,13 @@ import {
 	ArrowLeftIcon,
 	ArrowRight,
 	ChevronDown,
+	ChevronRight,
+	Clock2Icon,
 	FilterIcon,
+	MailIcon,
+	MapIcon,
 	Paperclip,
+	PhoneCall,
 	SearchIcon,
 	SendHorizonal,
 } from 'lucide-react';
@@ -114,7 +124,7 @@ export const ClimateActionCard = ({
 	title,
 }: TClimateCard) => {
 	return (
-		<div className='border-1 max-w-[330px] min-w-72 min-h-80 rounded-xl bg-white border-gray-100 shadow-elevated overflow-clip'>
+		<div className='border-1 max-w-[330px] min-w-72 min-h-80 rounded-xl bg-red-400 border-gray-100 shadow-soft-depth overflow-clip '>
 			{imgSrc && (
 				<div className='w-full h-fit'>
 					<ImageComponent
@@ -181,7 +191,7 @@ export const Search = ({
 		<div className='w-full relative'>
 			<Input
 				className={cn(
-					'bg-white font-medium border flex rounded-full justify-between placeholder:font-normal placeholder:text-[18px] placeholder:leading-7 placeholder:text-[var(--placeholder-text)] border-[var(--border-color)] shadow-elevated w-full',
+					'bg-white font-medium border flex rounded-full justify-between placeholder:font-normal placeholder:text-[18px] placeholder:leading-7 placeholder:text-[var(--placeholder-text)] border-[var(--border-color)] shadow-soft-depth w-full',
 					className
 				)}
 				{...{
@@ -200,12 +210,22 @@ export const Search = ({
 	);
 };
 
-export const SingleSuggestedInquiry = () => {
+export const SingleSuggestedInquiry = ({
+	img,
+	desc,
+}: TSingleSuggestedQueryProps) => {
 	return (
-		<div className='border border-gray-100 flex gap-2 p-2 w-[220px] h-[52px] bg-white rounded-xl'>
-			<div className=''>Icon</div>
+		<div className='border border-gray-100 flex gap-2 p-2 w-[220px] h-[52px] bg-white rounded-xl items-center shadow-soft-depth'>
+			<div className='w-fit'>
+				<ImageComponent
+					{...{
+						className: 'w-full h-auto',
+						src: img,
+					}}
+				/>
+			</div>
 			<div className='font-normal text-[14px] leading-[18px] text-gray-400'>
-				Gender & climate change vulnerability in Africa
+				{desc}
 			</div>
 		</div>
 	);
@@ -214,11 +234,9 @@ export const SingleSuggestedInquiry = () => {
 export const SuggestedInquiries = () => {
 	return (
 		<div className='flex gap-9'>
-			{Array(4)
-				.fill(0)
-				.map((_, index) => (
-					<SingleSuggestedInquiry {...{}} key={`suggestion-${index}`} />
-				))}
+			{SUGGESTED_QUERIES.map((props, index) => (
+				<SingleSuggestedInquiry {...props} key={`suggestion-${index}`} />
+			))}
 		</div>
 	);
 };
@@ -226,7 +244,7 @@ export const SuggestedInquiries = () => {
 export const FilterBadge = ({ Icon, onClick, title }: TFilterBadge) => {
 	return (
 		<div
-			className='flex gap-2 py-[6px] px-3 rounded-md bg-agnes-blue cursor-pointer items-center justify-center
+			className='flex gap-2 py-[6px] px-3 rounded-md bg-agnes-blue cursor-pointer items-center justify-center w-fit
 			'
 			{...{
 				onClick,
@@ -346,7 +364,7 @@ export const ReusableAdvancedSubSection = ({
 
 export const AdvancedFilter = () => {
 	return (
-		<div className='px-4 py-3 border-r-[1.5px] flex gap-6 flex-col bg-white border-gray-300 shadow-soft-multi flex-[1]'>
+		<div className='px-4 py-3 border-r-[1.5px] flex gap-6 flex-col bg-white border-gray-300 shadow-soft-depth col-span-1 h-fit'>
 			<div className=''>
 				<FilterUnderFilter />
 			</div>
@@ -370,8 +388,8 @@ export const BreadCrumbFilters = () => {
 
 export const ResultsWrapper = () => {
 	return (
-		<div className='flex-[5] flex gap-2 flex-col items-center'>
-			<div className='flex gap-10 flex-wrap'>
+		<div className='col-span-3 flex gap-2 flex-col items-center'>
+			<div className='grid col-span-1 sm:col-span-2 md:grid-cols-3 lg:col-span-4 xl:col-span-5 gap-10 flex-wrap'>
 				{CLIMATE_ACTION.map((item, key) => (
 					<ClimateActionCard {...item} key={`action-${key}`} />
 				))}
@@ -435,7 +453,7 @@ export const Resources = () => {
 
 			<div className='flex flex-col gap-2'>
 				<div className='flex gap-4 justify-between py-4'>
-					<div className='w-fit'>
+					<div className='w-fit flex-[1]'>
 						<FilterBadge
 							{...{
 								onClick: () => {
@@ -446,9 +464,12 @@ export const Resources = () => {
 							}}
 						/>
 					</div>
-					<BreadCrumbFilters />
+
+					<div className='flex-[5]'>
+						<BreadCrumbFilters />
+					</div>
 				</div>
-				<div className='flex gap-2 pb-8'>
+				<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pb-8'>
 					<AdvancedFilter />
 
 					<ResultsWrapper />
@@ -490,7 +511,7 @@ export const FilterUnderFilter = () => {
 			<div className='w-full'>
 				<Search
 					{...{
-						placeholder: '',
+						placeholder: 'Search for Resource',
 						children: (
 							<SearchIcon className='w-6 h-6 stroke-agnes-blue cursor-pointer' />
 						),
@@ -503,6 +524,146 @@ export const FilterUnderFilter = () => {
 	);
 };
 
+export const FooterSectionBlueprint = ({
+	children,
+	className,
+}: TChildNode & Partial<TClassName>) => {
+	return (
+		<div
+			className={cn(
+				'flex gap-2 flex-col w-[400px] justify-between text-footer-text',
+				className
+			)}>
+			{children}
+		</div>
+	);
+};
+
+export const FooterContactInfo = ({
+	Icon,
+	className,
+	title,
+}: TSingleContactProps) => {
+	return (
+		<div className={cn('flex items-center gap-4 py-1', className)}>
+			<Icon className='w-5 h-5 stroke-agnes-blue' />
+			<p className='leading-7 text-base font-normal'> {title}</p>
+		</div>
+	);
+};
+
+export const FooterLink = ({
+	title,
+	href,
+}: Required<Pick<TLinkProps, 'href' | 'title'>>) => {
+	return (
+		<Link className='w-fit flex gap-2 items-center' to={href}>
+			<ChevronRight className='stroke-agnes-blue w-5 h-5' />
+			<p className='text-base font-normal leading-7 text-footer-text'>
+				{title}
+			</p>
+		</Link>
+	);
+};
+
+export const CopyRights = () => {
+	return (
+		<div className='h-[100px] bg-agnes-blue flex items-center justify-center'>
+			<p className='text-footer-text leading-9 text-base font-normal text-center'>
+				© Copyright 2024 AGNES Africa. Powered by 
+			</p>
+		</div>
+	);
+};
+
 export const Footer = () => {
-	return <div className='w-full h-[500px] bg-agnes-blue'>Footer</div>;
+	return (
+		<div className='w-full h-[400px]'>
+			<div className='flex gap-6 flex-wrap items-center justify-center bg-footer-bg py-10'>
+				<FooterSectionBlueprint
+					{...{
+						children: (
+							<>
+								<ImageComponent {...{ src: '/images/logo.svg' }} />
+								<p className='font-normal text-base leading-7'>
+									The AGNES was created in 2015 to provide scientific expertise
+									and evidence to inform a common African position in climate
+									change negotiations.
+								</p>
+
+								<div className=''>Socials</div>
+							</>
+						),
+					}}
+				/>
+
+				<FooterSectionBlueprint
+					{...{
+						className: 'gap-6',
+						children: (
+							<>
+								<p className='leading-8 font-bold text-2xl text-white'>
+									Contact Info
+								</p>
+
+								<div className=''>
+									<FooterContactInfo
+										{...{
+											Icon: MapIcon,
+											title:
+												'Blue Violet Plaza, 5th Floor, Suite No 507, Kindaruma Road Kilimani,Nairobi, Kenya',
+										}}
+									/>
+									<FooterContactInfo
+										{...{
+											title: '+254 705 742 836',
+											Icon: PhoneCall,
+										}}
+									/>
+									<FooterContactInfo
+										{...{
+											title: 'info@agnesafrica.org',
+											Icon: MailIcon,
+										}}
+									/>
+									<FooterContactInfo
+										{...{
+											title: '+254 705 742 836',
+											Icon: MailIcon,
+										}}
+									/>
+
+									<FooterContactInfo
+										{...{
+											title: '08:00 - 17:00',
+											Icon: Clock2Icon,
+										}}
+									/>
+								</div>
+							</>
+						),
+					}}
+				/>
+
+				<FooterSectionBlueprint
+					{...{
+						children: (
+							<>
+								<p className='font-bold font-poppins leading-8 text-2xl text-white'>
+									Quick Links
+								</p>
+
+								<div className='flex flex-col gap-2'>
+									{FOOTER_LINKS.map((item, key) => (
+										<FooterLink {...item} key={`footer-link-${key}`} />
+									))}
+								</div>
+							</>
+						),
+					}}
+				/>
+			</div>
+			<CopyRights />
+		</div>
+	);
 };
