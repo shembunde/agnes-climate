@@ -124,7 +124,7 @@ export const ClimateActionCard = ({
 	title,
 }: TClimateCard) => {
 	return (
-		<div className='border-1 max-w-[330px] min-w-72 min-h-80 rounded-xl bg-red-400 border-gray-100 shadow-soft-depth overflow-clip '>
+		<div className='border-1 max-w-[330px] min-w-72 min-h-80 rounded-xl bg-white border-gray-100 shadow-soft-depth overflow-clip '>
 			{imgSrc && (
 				<div className='w-full h-fit'>
 					<ImageComponent
