@@ -1,19 +1,23 @@
-FROM node:22-slim AS Builder
+# Use a Node.js image for building the app
+FROM node:22-alpine AS build
 
-WORKDIR /frontend
+# Set the working directory
+WORKDIR /app
 
-COPY ./package.json .
+# Copy package.json and install dependencies
+COPY package.json ./
+RUN npm install --legacy-peer-deps
 
-# env
-ENV FRONTEND_CLIENT=http://pos.astroune.co.ke/
-ENV COMPANY_NAME=ASTROUNE
-ENV NODE_ENV=development
-ENV SERVER_PORT=3000
-ENV TZ=Africa/Nairobi
-# end of env
+# Copy the source code and build the app
+COPY . .
+RUN npm run build
 
-# COPY . .
+# Use an Nginx image to serve the built app
+FROM nginx:1.23-alpine
+COPY --from=build /app/build /usr/share/nginx/html
 
-RUN yarn --frozen-lockfile
+# Expose port 80
+EXPOSE 80
 
-CMD ["yarn", "dev"]
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
