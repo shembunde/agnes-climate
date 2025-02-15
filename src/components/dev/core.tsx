@@ -18,6 +18,7 @@ import {
 	TImageProps,
 	TLinkProps,
 	TPageProps,
+	TReusableAccordion,
 	TSearchProps,
 	TSingleContactProps,
 	TSingleSuggestedQueryProps,
@@ -30,7 +31,6 @@ import { cn } from '@/lib/utils';
 import {
 	ArrowLeftIcon,
 	ArrowRight,
-	ChevronDown,
 	ChevronRight,
 	Clock2Icon,
 	FilterIcon,
@@ -41,7 +41,12 @@ import {
 	SearchIcon,
 	SendHorizonal,
 } from 'lucide-react';
-import { Badge } from '../ui/badge';
+import {
+	Accordion,
+	AccordionContent,
+	AccordionItem,
+	AccordionTrigger,
+} from '../ui/accordion';
 import { Checkbox } from '../ui/checkbox';
 import { Separator } from '../ui/separator';
 
@@ -55,7 +60,7 @@ export const Banner = () => {
 	);
 };
 
-export const ReusableNavTree = ({ title, children, href }: TLinkProps) => {
+export const ReusableNavTree = ({ title, href }: TLinkProps) => {
 	return (
 		<div className='w-fit'>
 			<Link
@@ -116,6 +121,13 @@ export const FilterTag = ({ title }: TTitle) => {
 	);
 };
 
+export const CustomBadge = ({
+	children,
+	className,
+}: TChildNode & Partial<TClassName>) => {
+	return <div className={cn('', className)}>{children}</div>;
+};
+
 export const ClimateActionCard = ({
 	description,
 	imgSrc,
@@ -124,7 +136,7 @@ export const ClimateActionCard = ({
 	title,
 }: TClimateCard) => {
 	return (
-		<div className='border-1 max-w-[330px] min-w-72 min-h-80 rounded-xl bg-white border-gray-100 shadow-soft-depth overflow-clip '>
+		<div className='border-1 max-w-[330px] min-w-72 min-h-80 rounded-xl bg-white border-gray-100 shadow-soft-depth overflow-clip'>
 			{imgSrc && (
 				<div className='w-full h-fit'>
 					<ImageComponent
@@ -139,9 +151,9 @@ export const ClimateActionCard = ({
 			<div className='flex gap-4 p-4 flex-col'>
 				<div className='flex gap-1 flex-col'>
 					<div className='flex gap-3 items-center'>
-						<Badge className='bg-agnes-blue px-2 py-1 flex gap-1 items-center justify-center rounded-[25px] bg-agnes-blue/4 text-agnes-blue'>
+						<CustomBadge className='bg-agnes-blue px-2 py-1 flex gap-1 items-center justify-center rounded-[25px] bg-agnes-blue/4 text-agnes-blue'>
 							{tag}
-						</Badge>
+						</CustomBadge>
 						<p className='text-placeholder text-center leading-4 text-xs font-medium'>
 							{date.toLocaleString('en-US', {
 								month: 'short',
@@ -259,13 +271,15 @@ export const BadgeFilters = ({ active, onClick, title }: TBadgeFilter) => {
 	return (
 		<div
 			className={cn(
-				'flex gap-2 py-[6px] px-3 rounded-md cursor-pointer items-center justify-center selection-none text-dark font-poppins',
+				'flex gap-2 py-[6px] px-3 rounded-md cursor-pointer items-center justify-center selection-none text-dark font-poppins w-auto select-none',
 				active ? 'bg-agnes-blue text-white' : 'bg-gray-100 text-gray-800'
 			)}
 			{...{
 				onClick,
 			}}>
-			<p className='text-inherit font-medium text-sm leading-6 '>{title}</p>
+			<p className='text-inherit font-medium text-sm leading-6 w-auto'>
+				{title}
+			</p>
 		</div>
 	);
 };
@@ -333,6 +347,26 @@ export const OneFilter = ({
 	);
 };
 
+export const ReusableAccordionComponent = ({
+	accordionItemValue,
+	defaultValue = '',
+	content,
+	title,
+}: TReusableAccordion) => (
+	<Accordion {...{ collapsible: true, type: 'single', defaultValue }}>
+		<AccordionItem
+			{...{
+				value: accordionItemValue,
+			}}>
+			<AccordionTrigger className='w-full [&[data-state=open]_svg]:rotate-180'>
+				{title}
+			</AccordionTrigger>
+
+			<AccordionContent className='pb-4'>{content}</AccordionContent>
+		</AccordionItem>
+	</Accordion>
+);
+
 export const ReusableAdvancedSubSection = ({
 	options,
 	title,
@@ -343,20 +377,21 @@ export const ReusableAdvancedSubSection = ({
 				<Separator className='' />
 			</div>
 
-			<div className=''>
-				<TitleWithIcon
+			<div className='w-full'>
+				<ReusableAccordionComponent
 					{...{
+						accordionItemValue: '',
 						className: ' font-semibold text-[12.36px] leading-5',
-						Icon: ChevronDown,
 						title,
+						content: (
+							<div className='flex flex-col gap-2'>
+								{options.map((item, key) => (
+									<OneFilter {...item} key={`one-filter-${key}`} />
+								))}
+							</div>
+						),
 					}}
 				/>
-			</div>
-
-			<div className='flex flex-col gap-2'>
-				{options.map((item, key) => (
-					<OneFilter {...item} key={`one-filter-${key}`} />
-				))}
 			</div>
 		</div>
 	);
@@ -365,7 +400,7 @@ export const ReusableAdvancedSubSection = ({
 export const AdvancedFilter = () => {
 	return (
 		<div className='px-4 py-3 border-r-[1.5px] flex gap-6 flex-col bg-white border-gray-300 shadow-soft-depth col-span-1 h-fit'>
-			<div className=''>
+			<div className='w-full'>
 				<FilterUnderFilter />
 			</div>
 
@@ -378,7 +413,7 @@ export const AdvancedFilter = () => {
 
 export const BreadCrumbFilters = () => {
 	return (
-		<div className='flex gap-11 overflow-auto'>
+		<div className='flex gap-11 overflow-auto py-2 items-center'>
 			{FILTERS.map((item, key) => (
 				<BadgeFilters {...item} key={`filter-${key}`} />
 			))}
@@ -389,7 +424,7 @@ export const BreadCrumbFilters = () => {
 export const ResultsWrapper = () => {
 	return (
 		<div className='col-span-3 flex gap-2 flex-col items-center'>
-			<div className='grid col-span-1 sm:col-span-2 md:grid-cols-3 lg:col-span-4 xl:col-span-5 gap-10 flex-wrap'>
+			<div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
 				{CLIMATE_ACTION.map((item, key) => (
 					<ClimateActionCard {...item} key={`action-${key}`} />
 				))}
@@ -452,8 +487,8 @@ export const Resources = () => {
 			</div>
 
 			<div className='flex flex-col gap-2'>
-				<div className='flex gap-4 justify-between py-4'>
-					<div className='w-fit flex-[1]'>
+				<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 justify-between py-4'>
+					<div className='w-fit grid-cols-1'>
 						<FilterBadge
 							{...{
 								onClick: () => {
@@ -465,7 +500,7 @@ export const Resources = () => {
 						/>
 					</div>
 
-					<div className='flex-[5]'>
+					<div className='col-span-3'>
 						<BreadCrumbFilters />
 					</div>
 				</div>

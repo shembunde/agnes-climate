@@ -216,6 +216,14 @@ export const CLIMATE_ACTION: TClimateCard[] = [
 		tag: 'Energy',
 		title: `Call for Gender Considerations in Climate Action: Message to African Leaders at COP 29`,
 	},
+	{
+		imgSrc: '/images/researchers.png',
+
+		date: new Date(),
+		description: `	As African leaders and negotiators come together at COP 29, we stand at a critical juncture. The impacts of climate change are no longer abstract, and for far too many communities, particularly women, the consequences are immediate and devastating. This is more than a technical issue; it’s a moral crisis. We cannot separate climate action from the pursuit of gender equality.`,
+		tag: 'Energy',
+		title: `Call for Gender Considerations in Climate Action: Message to African Leaders at COP 29`,
+	},
 ];
 
 export const FOOTER_LINKS: Required<Pick<TLinkProps, 'href' | 'title'>>[] = [

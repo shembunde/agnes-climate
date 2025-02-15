@@ -69,3 +69,11 @@ export type TSingleSuggestedQueryProps = {
 	desc: string;
 	img: string;
 };
+
+export type TReusableAccordion = {
+	accordionItemValue: string;
+	defaultValue?: string;
+	content: ReactNode;
+	title: ReactNode;
+	value?: string;
+};
