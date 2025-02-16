@@ -52,8 +52,8 @@ import { Separator } from '../ui/separator';
 
 export const Banner = () => {
 	return (
-		<div className='w-full h-[244.8px] bg-[url(/images/Background.svg)] flex items-center justify-center'>
-			<p className='font-bold text-12 lead-[56px] text-white'>
+		<div className='w-full h-[244.8px] bg-[url(/images/Background.png)] flex items-center justify-center'>
+			<p className='font-bold text-[32px] lead-[48px] text-white'>
 				A.I Powered Resource Library✨
 			</p>
 		</div>
@@ -436,7 +436,7 @@ export const BreadCrumbFilters = () => {
 export const ResultsWrapper = () => {
 	return (
 		<div className='col-span-3 flex gap-2 flex-col items-center'>
-			<div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6'>
+			<div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-4 lg:gap-y-14'>
 				{CLIMATE_ACTION.map((item, key) => (
 					<ClimateActionCard {...item} key={`action-${key}`} />
 				))}
