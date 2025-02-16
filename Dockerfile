@@ -5,7 +5,7 @@ FROM node:22-alpine AS build
 WORKDIR /app
 
 # Copy package.json and install dependencies
-COPY package.json ./
+COPY package.json .
 RUN npm install --legacy-peer-deps
 
 # Copy the source code and build the app

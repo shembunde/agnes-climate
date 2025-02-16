@@ -82,10 +82,20 @@ export const ImageComponent = ({ className, ...props }: TImageProps) => {
 	);
 };
 
+export const Humbugger = () => {
+	return (
+		<div className='right-1 flex flex-col gap-1 absolute top-[calc(calc(100%-24px)/2)] lg:hidden items-center'>
+			<p className='w-9 h-1 bg-black rounded-lg'></p>
+			<p className='w-9 h-1 bg-black rounded-lg'></p>
+			<p className='w-9 h-1 bg-black rounded-lg'></p>
+		</div>
+	);
+};
+
 export const TopNavbar = () => {
 	return (
-		<div className='h-[103px] bg-white w-full flex'>
-			<div className='flex items-center justify-start gap-5 pl-40 pr-40 w-full'>
+		<div className='h-[103px] bg-white w-full flex relative'>
+			<div className='flex items-center justify-start gap-5 pl-2 lg:pl-40 lg:pr-40 w-full'>
 				<ImageComponent
 					{...{
 						className: 'w-[236px] h-[78px]',
@@ -93,12 +103,14 @@ export const TopNavbar = () => {
 					}}
 				/>
 
-				<div className='flex justify-between items-center gap-1'>
+				<div className='justify-between items-center gap-1 hidden lg:flex'>
 					{HEADER_LINKS.map((item, key) => (
 						<ReusableNavTree {...item} key={`link-${key}`} />
 					))}
 				</div>
 			</div>
+
+			<Humbugger />
 		</div>
 	);
 };
@@ -245,7 +257,7 @@ export const SingleSuggestedInquiry = ({
 
 export const SuggestedInquiries = () => {
 	return (
-		<div className='flex gap-9'>
+		<div className='flex gap-2 flex-col lg:flex-row lg:gap-9 items-center'>
 			{SUGGESTED_QUERIES.map((props, index) => (
 				<SingleSuggestedInquiry {...props} key={`suggestion-${index}`} />
 			))}
@@ -286,8 +298,8 @@ export const BadgeFilters = ({ active, onClick, title }: TBadgeFilter) => {
 
 export const Inquiry = () => {
 	return (
-		<div className='flex gap-6 pt-64 pb-64 flex-col w-2/3 m-auto'>
-			<p className='font-semibold leading-14 text-center text-gray-700 text-4xl'>
+		<div className='flex px-2 gap-6 pt-64 pb-64 flex-col w-full lg:w-2/3 m-auto'>
+			<p className='font-semibold leading-14 text-center text-gray-700 text-2xl lg:text-4xl'>
 				What would you like to know?
 			</p>
 
@@ -296,7 +308,7 @@ export const Inquiry = () => {
 					children: (
 						<>
 							<Paperclip
-								className='w-8 h-8 cursor-pointer stroke-gray-400'
+								className='w-8 hidden lg:block h-8 cursor-pointer stroke-gray-400'
 								{...{}}
 							/>
 							<SendHorizonal
@@ -308,7 +320,7 @@ export const Inquiry = () => {
 					placeholder:
 						'Got a question about climate or sustainability? Ask away!',
 
-					className: 'w-full h-[70px] py-5 px-8 pr-28',
+					className: 'w-full h-[70px] py-2 px-4 pr-14 lg:py-5 lg:px-8 lg:pr-28',
 				}}
 			/>
 
@@ -641,7 +653,7 @@ export const Footer = () => {
 									Contact Info
 								</p>
 
-								<div className=''>
+								<div className='w-full'>
 									<FooterContactInfo
 										{...{
 											Icon: MapIcon,
