@@ -480,7 +480,7 @@ export const SinglePaginationPage = ({ active, page }: TPageProps) => {
 
 export const ReusablePagination = () => {
 	return (
-		<div className='flex gap-1 bg-white border rounded-lg px-[1px] py-3 border-border-color-darker shadow-soft-depth w-fit'>
+		<div className='flex items-center gap-1 bg-white border rounded-lg px-[1px] py-3 border-border-color-darker shadow-soft-depth w-fit'>
 			{Array(4)
 				.fill(0)
 				.map((_, key) => (
@@ -489,7 +489,7 @@ export const ReusablePagination = () => {
 							{...{ active: true, page: `${key + 1}` }}
 							key={`page-${key}`}
 						/>
-						<p>|</p>
+						<p className='font-bold'>|</p>
 					</div>
 				))}
 
@@ -499,6 +499,9 @@ export const ReusablePagination = () => {
 					page: '...',
 				}}
 			/>
+
+			<p className='font-bold'>|</p>
+
 			<SinglePaginationPage
 				{...{
 					active: false,
