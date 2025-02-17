@@ -8,6 +8,7 @@ import {
 } from '@/utils/constants';
 import { Link } from 'react-router-dom';
 import {
+	TAdvancedProps,
 	TBadgeFilter,
 	TChildNode,
 	TClassName,
@@ -18,6 +19,7 @@ import {
 	TImageProps,
 	TLinkProps,
 	TPageProps,
+	TResultsWrapperProps,
 	TReusableAccordion,
 	TSearchProps,
 	TSingleContactProps,
@@ -42,6 +44,7 @@ import {
 	SearchIcon,
 	SendHorizonal,
 } from 'lucide-react';
+import { useState } from 'react';
 import {
 	Accordion,
 	AccordionContent,
@@ -154,9 +157,10 @@ export const CustomBadge = ({
 
 export const ClimateActionCard = ({
 	description,
+	active,
 	imgSrc,
-	tag,
 	date,
+	tag,
 	title,
 }: TClimateCard) => {
 	return (
@@ -279,16 +283,31 @@ export const SuggestedInquiries = () => {
 	);
 };
 
-export const FilterBadge = ({ Icon, onClick, title }: TFilterBadge) => {
+export const FilterBadge = ({ Icon, onClick, title, active }: TFilterBadge) => {
 	return (
 		<div
-			className='flex gap-2 py-[6px] px-3 rounded-md bg-agnes-blue cursor-pointer items-center justify-center w-fit
-			'
+			className={cn(
+				'flex gap-2 py-[6px] px-3 rounded-md cursor-pointer items-center justify-center w-fit select-none',
+				active ? 'bg-agnes-blue' : 'border-gray-600 border'
+			)}
 			{...{
 				onClick,
 			}}>
-			{Icon && <Icon className='stroke-white w-4 h-4' />}
-			<p className='text-white font-medium text-sm leading-6 '>{title}</p>
+			{Icon && (
+				<Icon
+					className={cn(
+						'w-4 h-4',
+						active ? 'stroke-white' : 'stroke-placeholder'
+					)}
+				/>
+			)}
+			<p
+				className={cn(
+					'font-medium text-sm leading-6',
+					active ? 'text-white' : 'text-placeholder'
+				)}>
+				{title}
+			</p>
 		</div>
 	);
 };
@@ -423,11 +442,15 @@ export const ReusableAdvancedSubSection = ({
 	);
 };
 
-export const AdvancedFilter = () => {
+export const AdvancedFilter = ({ onClick }: TAdvancedProps) => {
 	return (
 		<div className='px-4 py-3 border-r-[1.5px] flex gap-6 flex-col bg-white border-gray-300 shadow-soft-depth col-span-2 lg:col-span-1 h-fit'>
 			<div className='w-full'>
-				<FilterUnderFilter />
+				<FilterUnderFilter
+					{...{
+						onClick,
+					}}
+				/>
 			</div>
 
 			{ALL_FILTERS.map((item, key) => (
@@ -452,12 +475,30 @@ export const BreadCrumbFilters = () => {
 	);
 };
 
-export const ResultsWrapper = () => {
+export const ResultsWrapper = ({ active }: TResultsWrapperProps) => {
 	return (
-		<div className='col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-3 flex gap-2 flex-col items-center'>
-			<div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-4 lg:gap-y-14'>
+		<div
+			className={cn(
+				'flex gap-2 flex-col items-center',
+				active
+					? 'col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-3'
+					: 'col-span-3 sm:col-span-4 md:col-span-5 lg:col-span-6'
+			)}>
+			<div
+				className={cn(
+					'grid gap-6 gap-y-4 lg:gap-y-14',
+					active
+						? 'grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'
+						: 'grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-4'
+				)}>
 				{CLIMATE_ACTION.map((item, key) => (
-					<ClimateActionCard {...item} key={`action-${key}`} />
+					<ClimateActionCard
+						{...{
+							...item,
+							active,
+						}}
+						key={`action-${key}`}
+					/>
 				))}
 			</div>
 
@@ -513,6 +554,10 @@ export const ReusablePagination = () => {
 };
 
 export const Resources = () => {
+	const [advancedFilters, setAdvancedFilters] = useState<boolean>(true);
+
+	const handleToggle = () => setAdvancedFilters((prev) => !prev);
+
 	return (
 		<div className='w-full'>
 			<div className='flex flex-col gap-1'>
@@ -528,9 +573,8 @@ export const Resources = () => {
 					<div className='w-fit grid-cols-1'>
 						<FilterBadge
 							{...{
-								onClick: () => {
-									console.log('Filtering');
-								},
+								active: advancedFilters,
+								onClick: handleToggle,
 								Icon: FilterIcon,
 								title: 'Filter',
 							}}
@@ -542,9 +586,13 @@ export const Resources = () => {
 					</div>
 				</div>
 				<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pb-8 items-center md:items-start'>
-					<AdvancedFilter />
+					{advancedFilters && <AdvancedFilter {...{ onClick: handleToggle }} />}
 
-					<ResultsWrapper />
+					<ResultsWrapper
+						{...{
+							active: advancedFilters,
+						}}
+					/>
 				</div>
 			</div>
 		</div>
@@ -552,10 +600,11 @@ export const Resources = () => {
 };
 
 export const TitleWithIcon = ({
+	className = '',
+	onClick,
 	Icon,
 	title,
-	className = '',
-}: TTitleIconProps) => {
+}: TTitleIconProps & Partial<TAdvancedProps>) => {
 	return (
 		<div className='flex items-center justify-between'>
 			<p
@@ -567,17 +616,19 @@ export const TitleWithIcon = ({
 			</p>
 
 			<div className='flex gap-2 items-center justify-center cursor-pointer select-none'>
-				<Icon className='w-6 h-6 stroke-gray-800' />
+				<Icon className='w-6 h-6 stroke-gray-800' onClick={() => onClick?.()} />
 			</div>
 		</div>
 	);
 };
 
-export const FilterUnderFilter = () => {
+export const FilterUnderFilter = ({ onClick }: TAdvancedProps) => {
 	return (
 		<div className='flex flex-col gap-4 w-full'>
 			<div className=''>
-				<TitleWithIcon {...{ Icon: ArrowLeftIcon, title: 'Filter results' }} />
+				<TitleWithIcon
+					{...{ Icon: ArrowLeftIcon, title: 'Filter results', onClick }}
+				/>{' '}
 			</div>
 
 			<div className='w-full'>

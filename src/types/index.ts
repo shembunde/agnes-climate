@@ -16,6 +16,7 @@ export type TLinkProps = {
 export type TFilterBadge = {
 	Icon?: LucideIcon;
 	onClick: () => void;
+	active: boolean;
 	title: string;
 };
 
@@ -56,7 +57,7 @@ export type TClimateCard = {
 	tag: string;
 	date: Date;
 	title: string;
-};
+} & Pick<TResultsWrapperProps, 'active'>;
 
 export type TPageProps = { page: string; active: boolean };
 
@@ -76,4 +77,10 @@ export type TReusableAccordion = {
 	content: ReactNode;
 	title: ReactNode;
 	value?: string;
+};
+
+export type TAdvancedProps = { onClick: () => void };
+
+export type TResultsWrapperProps = {
+	active: boolean;
 };
