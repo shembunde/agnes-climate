@@ -22,18 +22,33 @@ export const HEADER_LINKS: TLinkProps[] = [
 	{
 		href: '/expert',
 		title: 'Expert',
-		children: [],
+		children: [
+			{
+				title: 'web-experts',
+				href: '',
+			},
+		],
 	},
 	{
 		href: '/resources',
 		title: 'Resources',
-		children: [],
+		children: [
+			{
+				title: 'ai stuff',
+				href: '',
+			},
+		],
 	},
 
 	{
 		href: '/events',
 		title: 'Events',
-		children: [],
+		children: [
+			{
+				title: 'web-experts',
+				href: '',
+			},
+		],
 	},
 
 	{

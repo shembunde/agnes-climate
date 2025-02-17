@@ -31,6 +31,7 @@ import { cn } from '@/lib/utils';
 import {
 	ArrowLeftIcon,
 	ArrowRight,
+	ChevronDown,
 	ChevronRight,
 	Clock2Icon,
 	FilterIcon,
@@ -60,15 +61,18 @@ export const Banner = () => {
 	);
 };
 
-export const ReusableNavTree = ({ title, href }: TLinkProps) => {
+export const ReusableNavTree = ({ title, href, children }: TLinkProps) => {
 	return (
 		<div className='w-fit'>
 			<Link
-				className=''
+				className='flex gap-1 items-center'
 				{...{
 					to: href ?? '',
 				}}>
 				{title}
+				{children && children?.length > 0 && (
+					<ChevronDown className='w-4 h-4 font-bold' />
+				)}
 			</Link>
 		</div>
 	);
@@ -103,7 +107,7 @@ export const TopNavbar = () => {
 					}}
 				/>
 
-				<div className='justify-between items-center gap-1 hidden lg:flex'>
+				<div className='justify-between items-center gap-4 hidden lg:flex'>
 					{HEADER_LINKS.map((item, key) => (
 						<ReusableNavTree {...item} key={`link-${key}`} />
 					))}
