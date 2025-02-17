@@ -465,10 +465,10 @@ export const SinglePaginationPage = ({ active, page }: TPageProps) => {
 	return (
 		<div
 			className={cn(
-				'px-5 py-[1px] cursor-pointer select-none',
+				'px-4 md:px-5 py-[1px] cursor-pointer select-none',
 				active ? 'text-agnes-blue' : ''
 			)}>
-			<p className='leading-6 text-lg font-normal'>{page}</p>
+			<p className='leading-6 text-sm md:text-lg font-normal'>{page}</p>
 		</div>
 	);
 };
@@ -479,10 +479,13 @@ export const ReusablePagination = () => {
 			{Array(4)
 				.fill(0)
 				.map((_, key) => (
-					<SinglePaginationPage
-						{...{ active: true, page: `${key + 1}` }}
-						key={`page-${key}`}
-					/>
+					<div className='flex gap-1 items-center' key={key}>
+						<SinglePaginationPage
+							{...{ active: true, page: `${key + 1}` }}
+							key={`page-${key}`}
+						/>
+						<p>|</p>
+					</div>
 				))}
 
 			<SinglePaginationPage
@@ -530,7 +533,7 @@ export const Resources = () => {
 						<BreadCrumbFilters />
 					</div>
 				</div>
-				<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pb-8'>
+				<div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 pb-8 items-center md:items-start'>
 					<AdvancedFilter />
 
 					<ResultsWrapper />
