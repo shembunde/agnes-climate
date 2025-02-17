@@ -12,6 +12,7 @@ const config: Config = {
 				'placeholder': 'var(--placeholder-text)',
 				'bodytext': 'var(--body-text)',
 				'border-color-darker': 'var(--border-color-darker)',
+				'agnes-light-blue': 'var(--agnes-light-blue)',
 				'footer-text': 'var(--footer-text-color)',
 				'border-single-pagin': 'var(--border-single-pagin)',
 				'footer-bg': 'var(--footer-bg)',

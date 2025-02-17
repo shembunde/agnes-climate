@@ -52,8 +52,8 @@ import { Separator } from '../ui/separator';
 
 export const Banner = () => {
 	return (
-		<div className='w-full h-[244.8px] bg-[url(/images/Background.png)] flex items-center justify-center'>
-			<p className='font-bold text-[32px] lead-[48px] text-white'>
+		<div className='w-full h-[244.8px] bg-[url(/images/Background.png)] flex items-center justify-start bg-cover'>
+			<p className='font-bold text-4xl lg:text-5xl leading-[48px] text-white pl-2 md:pl-16 lg:pl-24 font-poppins'>
 				A.I Powered Resource Library✨
 			</p>
 		</div>
@@ -137,7 +137,15 @@ export const CustomBadge = ({
 	children,
 	className,
 }: TChildNode & Partial<TClassName>) => {
-	return <div className={cn('', className)}>{children}</div>;
+	return (
+		<div
+			className={cn(
+				'bg-agnes-light-blue px-2 py-1 flex gap-1 items-center justify-center rounded-[25px] text-agnes-blue',
+				className
+			)}>
+			{children}
+		</div>
+	);
 };
 
 export const ClimateActionCard = ({
@@ -163,9 +171,7 @@ export const ClimateActionCard = ({
 			<div className='flex gap-4 p-4 flex-col'>
 				<div className='flex gap-1 flex-col'>
 					<div className='flex gap-3 items-center'>
-						<CustomBadge className='bg-agnes-blue px-2 py-1 flex gap-1 items-center justify-center rounded-[25px] bg-agnes-blue/4 text-agnes-blue'>
-							{tag}
-						</CustomBadge>
+						<CustomBadge className=''>{tag}</CustomBadge>
 						<p className='text-placeholder text-center leading-4 text-xs font-medium'>
 							{date.toLocaleString('en-US', {
 								month: 'short',
@@ -196,7 +202,11 @@ export const ClimateActionCard = ({
 						</button>
 
 						<div className=''>
-							<img src='/icons/ai.svg' className='w-6 h-6' />
+							<img
+								className='w-6 h-6 cursor-pointer'
+								title='Summarize with AI'
+								src='/icons/ai.svg'
+							/>
 						</div>
 					</div>
 				</div>
@@ -411,7 +421,7 @@ export const ReusableAdvancedSubSection = ({
 
 export const AdvancedFilter = () => {
 	return (
-		<div className='px-4 py-3 border-r-[1.5px] flex gap-6 flex-col bg-white border-gray-300 shadow-soft-depth col-span-1 h-fit'>
+		<div className='px-4 py-3 border-r-[1.5px] flex gap-6 flex-col bg-white border-gray-300 shadow-soft-depth col-span-2 lg:col-span-1 h-fit'>
 			<div className='w-full'>
 				<FilterUnderFilter />
 			</div>
@@ -435,7 +445,7 @@ export const BreadCrumbFilters = () => {
 
 export const ResultsWrapper = () => {
 	return (
-		<div className='col-span-3 flex gap-2 flex-col items-center'>
+		<div className='col-span-2 sm:col-span-3 md:col-span-4 lg:col-span-3 flex gap-2 flex-col items-center'>
 			<div className='grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-4 lg:gap-y-14'>
 				{CLIMATE_ACTION.map((item, key) => (
 					<ClimateActionCard {...item} key={`action-${key}`} />
