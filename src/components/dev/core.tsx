@@ -406,13 +406,13 @@ export const ReusableAdvancedSubSection = ({
 			<div className='w-full'>
 				<ReusableAccordionComponent
 					{...{
-						accordionItemValue: '',
 						className: ' font-semibold text-[12.36px] leading-5',
+						accordionItemValue: title,
 						title,
 						content: (
 							<div className='flex flex-col gap-2'>
 								{options.map((item, key) => (
-									<OneFilter {...item} key={`one-filter-${key}`} />
+									<OneFilter {...{ ...item }} key={`one-filter-${key}`} />
 								))}
 							</div>
 						),
@@ -431,7 +431,12 @@ export const AdvancedFilter = () => {
 			</div>
 
 			{ALL_FILTERS.map((item, key) => (
-				<ReusableAdvancedSubSection {...item} key={`all-filters-${key}`} />
+				<ReusableAdvancedSubSection
+					{...{
+						...item,
+					}}
+					key={`all-filters-${key}`}
+				/>
 			))}
 		</div>
 	);
