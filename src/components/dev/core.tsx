@@ -88,7 +88,7 @@ export const ImageComponent = ({ className, ...props }: TImageProps) => {
 
 export const Humbugger = () => {
 	return (
-		<div className='right-1 flex flex-col gap-1 absolute top-[calc(calc(100%-24px)/2)] lg:hidden items-center'>
+		<div className='right-1 flex flex-col gap-1 fixed top-8 lg:hidden items-center z-50'>
 			<p className='w-9 h-1 bg-black rounded-lg'></p>
 			<p className='w-9 h-1 bg-black rounded-lg'></p>
 			<p className='w-9 h-1 bg-black rounded-lg'></p>
@@ -253,7 +253,7 @@ export const SingleSuggestedInquiry = ({
 	desc,
 }: TSingleSuggestedQueryProps) => {
 	return (
-		<div className='border border-gray-100 flex gap-2 p-2 w-[220px] h-[52px] bg-white rounded-xl items-center shadow-soft-depth'>
+		<div className='border border-gray-100 flex gap-2 p-2 w-full lg:px-1 lg:w-[220px] max-w-full h-14 bg-white rounded-xl items-center shadow-soft-depth'>
 			<div className='w-fit'>
 				<ImageComponent
 					{...{
@@ -271,7 +271,7 @@ export const SingleSuggestedInquiry = ({
 
 export const SuggestedInquiries = () => {
 	return (
-		<div className='flex gap-2 flex-col lg:flex-row lg:gap-9 items-center'>
+		<div className='flex gap-2 flex-col lg:flex-row lg:gap-9 items-center px-4 lg:px-0'>
 			{SUGGESTED_QUERIES.map((props, index) => (
 				<SingleSuggestedInquiry {...props} key={`suggestion-${index}`} />
 			))}
@@ -312,7 +312,7 @@ export const BadgeFilters = ({ active, onClick, title }: TBadgeFilter) => {
 
 export const Inquiry = () => {
 	return (
-		<div className='flex px-2 gap-6 pt-64 pb-64 flex-col w-full lg:w-2/3 m-auto'>
+		<div className='flex px-2 gap-6 py-32 sm:py-36 md:py-48 lg:py-64 flex-col w-full lg:w-2/3 m-auto'>
 			<p className='font-semibold leading-14 text-center text-gray-700 text-2xl lg:text-4xl'>
 				What would you like to know?
 			</p>
