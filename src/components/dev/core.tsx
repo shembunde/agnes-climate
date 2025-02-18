@@ -701,7 +701,7 @@ export const CopyRights = () => {
 
 export const Footer = () => {
 	return (
-		<div className='w-full h-[400px]'>
+		<div className='w-full h-fit min-h-[400px]'>
 			<div className='flex gap-6 flex-wrap items-center justify-center bg-footer-bg py-10'>
 				<FooterSectionBlueprint
 					{...{
