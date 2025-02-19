@@ -53,7 +53,6 @@ import {
 } from '../ui/accordion'
 import { Checkbox } from '../ui/checkbox'
 import { Separator } from '../ui/separator'
-import { Button } from '../ui/button'
 
 export const Banner = () => {
   return (
@@ -144,7 +143,7 @@ export const CustomBadge = ({
   return (
     <div
       className={cn(
-        'bg-agnes-light-blue flex items-center justify-center gap-1 rounded-[25px] px-2 py-1 text-agnes-blue',
+        'flex items-center justify-center gap-1 rounded-[25px] bg-agnes-light-blue px-2 py-1 text-agnes-blue',
         className,
       )}
     >
@@ -155,7 +154,6 @@ export const CustomBadge = ({
 
 export const ClimateActionCard = ({
   description,
-  active,
   imgSrc,
   date,
   tag,
@@ -820,7 +818,7 @@ export const ResourceCard = () => {
             className={cn(
               'w-full p-3 text-[14px] font-[400] leading-[21px]',
               index === 0
-                ? 'bg-agnes-light-blue border-l-[4px] border-agnes-blue text-[17px] font-bold leading-[24px]'
+                ? 'border-l-[4px] border-agnes-blue bg-agnes-light-blue text-[17px] font-bold leading-[24px]'
                 : '',
             )}
             key={index}
