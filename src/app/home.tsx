@@ -1,23 +1,18 @@
-import { Footer, Header, Inquiry, Resources } from '@/components/dev/core';
+import { Banner, Inquiry, Resources } from '@/components/dev/core'
 
 export default function Home() {
-	return (
-		<div className='overflow-hidden w-full'>
-			<div className='w-full'>
-				<Header />
-			</div>
+  return (
+    <div className='w-full overflow-hidden'>
+      <div className='w-full'>
+        <Banner />
+      </div>
+      <div className='w-full'>
+        <Inquiry />
+      </div>
 
-			<div className='w-full'>
-				<Inquiry />
-			</div>
-
-			<div className='px-8 w-full'>
-				<Resources />
-			</div>
-
-			<div className='w-full'>
-				<Footer />
-			</div>
-		</div>
-	);
+      <div className='w-full px-8'>
+        <Resources />
+      </div>
+    </div>
+  )
 }
