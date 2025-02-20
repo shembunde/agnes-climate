@@ -68,12 +68,6 @@ export const HEADER_LINKS: TLinkProps[] = [
     href: '/hotspot',
     children: [],
   },
-  {
-		href: '/animDashbBoard.html',
-		title: 'Climate Dashboard',
-		children: [],
-	},
-
 ]
 
 export const FILTERS: TBadgeFilter[] = [
