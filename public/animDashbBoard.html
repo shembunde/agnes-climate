@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="theCSS.css">
+<link rel="stylesheet" href="TheJavascript.js">
+</head>
+
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+
+
+<div class="topperContainer">
+
+  <div class="front">
+    <div class="leftSideContainer">
+      <div class="bg"></div>
+      <div class="dateContainer">
+        <span class="day">Friday<span class="date">21 Feb 2025</span></span>
+        <i class="pin" data-feather="map-pin"></i>
+        <span class="location">Nairobi, Kenya</span>
+      </div>
+
+      <div class="LilInfoContainer">
+        <i class="carbon-icon" data-feather="leaf"></i> <span class="climate-value">4.2</span> <span class="climate-unit">tCO2e/year</span>
+        <span class="climate-description">Average Carbon Footprint</span>
+      </div>
+    </div>
+    <div class="rightSideContainer">
+      <div class="moreInfoContainer">
+        <ul class="InfoList">
+          <li class="infoItem"><span>Energy Consumption</span><span class="value">1200 kWh</span></li>
+          <li class="infoItem"><span>Transportation</span><span class="value">800 km</span></li>
+          <li class="infoItem"><span>Heating/Cooling</span><span class="value">energy used</span></li>
+          <li class="infoItem"><span>Waste</span><span class="value">250 kg</span></li>
+          </ul>
+      </div>
+
+      <div class="forecastContainer">  <ul class="forecastDayList"> <li class="forecastDay">
+            <i class="trend-icon" data-feather="trending-up"></i> <div class="clear"></div>
+            <span class="forecastDay-Day">Mon</span> <div class="clear"></div>
+            <span class="forecastDay-Temp"> +0.1 </span> <div class="clear"></div> <span class="trend-unit">tCO2e</span>
+          </li>
+          <li class="forecastDay">
+            <i class="trend-icon" data-feather="trending-down"></i> <div class="clear"></div>
+            <span class="forecastDay-Day">Tue</span> <div class="clear"></div>
+            <span class="forecastDay-Temp"> -0.2 </span> <div class="clear"></div> <span class="trend-unit">tCO2e</span>
+          </li>
+          <li class="forecastDay">
+            <i class="trend-icon" data-feather="trending-flat"></i> <div class="clear"></div>
+            <span class="forecastDay-Day">Wed</span> <div class="clear"></div>
+            <span class="forecastDay-Temp"> 0.0 </span> <div class="clear"></div> <span class="trend-unit">tCO2e</span>
+          </li>
+          <li class="forecastDay">
+            <i class="trend-icon" data-feather="trending-up"></i> <div class="clear"></div>
+            <span class="forecastDay-Day">Thu</span> <div class="clear"></div>
+            <span class="forecastDay-Temp"> +0.3 </span> <div class="clear"></div> <span class="trend-unit">tCO2e</span>
+          </li>
+        </ul>
+      </div>
+      <div class="change-btn-container">
+        <button class="ChangeLocation"><i class="pin" data-feather="map-pin"></i> Change Location </button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="back">
+    <div id="input_container">
+      <div class="in_C">
+        <span>Search</span>
+        <input id="cityInput" type="text" />
+      </div>
+      <button id="undo" class="doSearch"><i class="pin" data-feather="map-pin"></i> Change Location </button>
+    </div>
+    <div class="recentSearches">
+      <span class="recentHr">Recent</span>
+      <ul class="recentList">
+        <li class="recentItem">Tabriz</li>
+        <li class="recentItem">London</li>
+        <li class="recentItem">Seattle</li>
+        <li class="recentItem">Amsterdam</li>
+        <li class="recentItem">tehran</li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://unpkg.com/feather-icons@4.28.0/dist/feather.min.js"></script>
+<script>
+    feather.replace();
+</script>
+
+</html>
