@@ -117,9 +117,26 @@ export const TopNavbar = () => {
         </Link>
 
         <div className='hidden w-[80%] items-center justify-between gap-4 lg:flex'>
-          {HEADER_LINKS.map((item, key) => (
-            <ReusableNavTree {...item} key={`link-${key}`} />
-          ))}
+        {HEADER_LINKS.map((item, key) => {
+            
+            const linkItem = { ...item };
+           
+            if (linkItem.href.endsWith('.html')) {
+              return (
+                <a
+                  key={`html-link-${key}`}
+                  href={linkItem.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-link"
+                >
+                  {linkItem.title}
+                </a>
+              );
+            }
+
+            return <ReusableNavTree {...linkItem} key={`link-${key}`} />;
+          })}
         </div>
       </div>
 
