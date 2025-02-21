@@ -73,6 +73,11 @@ export const HEADER_LINKS: TLinkProps[] = [
 		title: 'Climate Dashboard',
 		children: [],
 	},
+  {
+		href: '/agneschat.html',
+		title: 'Our own Ai ChatBot',
+		children: [],
+	},
 
 ]
 
