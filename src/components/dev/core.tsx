@@ -121,7 +121,7 @@ export const TopNavbar = () => {
             
             const linkItem = { ...item };
            
-            if (linkItem.href.endsWith('.html')) {
+            if (linkItem.href?.endsWith('.html')) {
               return (
                 <a
                   key={`html-link-${key}`}
